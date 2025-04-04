@@ -259,7 +259,7 @@
                 // Base layer - MAC
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
                 // │    TAB      │      Q      │      W      │      E      │      R      │      T      │   │      Y      │      U      │      I      │      O      │      P      │    BSPC     │
-                // │  CTRL/ESC   │  SHFT/A     │  CTRL/S     │   ALT/D     │   GUI/F     │      G      │   │      H      │   GUI/J     │   ALT/K     │  CTRL/L     │  SHFT/;     │     '       │
+                // │  CTRL/ESC   │   GUI/A     │   ALT/S     │  CTRL/D     │  SHFT/F     │      G      │   │      H      │  SHFT/J     │  CTRL/K     │   ALT/L     │   GUI/;     │     '       │
                 // │    SHFT     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                 //                                           │    GUI      │   LOWER     │   SPACE     │   │   SHFT/RET  │   RAISE     │    ALT      │
@@ -267,7 +267,7 @@
                 mac_layer {
                         bindings = <
    &kp TAB          &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSPC
-   &mt LCTRL ESC    &hm LSHFT A   &hm LCTRL S   &hm LALT D    &hm LGUI F    &kp G             &kp H         &hm RGUI J    &hm RALT K    &hm RCTRL L   &hm RSHFT SEMI &kp SQT
+   &mt LCTRL ESC    &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G             &kp H         &hm RSHFT J   &hm RCTRL K   &hm RALT L    &hm RGUI SEMI &kp SQT
    &kp LSHFT        &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp DEL
                                                &kp LGUI      &mo LOWER     &kp SPACE         &mt LSHIFT RET &mo RAISE    &kp RALT
                         >;      
@@ -293,7 +293,7 @@
                 // Base layer - WINDOWS
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
                 // │    TAB      │      Q      │      W      │      E      │      R      │      T      │   │      Y      │      U      │      I      │      O      │      P      │    BSPC     │
-                // │  CTRL/ESC   │  SHFT/A     │  CTRL/S     │   ALT/D     │   GUI/F     │      G      │   │      H      │   GUI/J     │   ALT/K     │  CTRL/L     │  SHFT/;     │     '       │
+                // │  CTRL/ESC   │   GUI/A     │   ALT/S     │  CTRL/D     │  SHFT/F     │      G      │   │      H      │  SHFT/J     │  CTRL/K     │   ALT/L     │   GUI/;     │     '       │
                 // │    SHFT     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                 //                                           │    ALT      │   LOWER     │   SPACE     │   │   SHFT/RET  │   RAISE     │    GUI      │
@@ -301,7 +301,7 @@
                 windows_layer {
                         bindings = <
    &kp TAB         &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSPC
-   &mt LCTRL ESC   &hm LSHFT A   &hm LCTRL S   &hm LALT D    &hm LGUI F    &kp G             &kp H         &hm RGUI J    &hm RALT K    &hm RCTRL L   &hm RSHFT SEMI &kp SQT
+   &mt LCTRL ESC   &hm LGUI A    &hm LALT S    &hm LCTRL D   &hm LSHFT F   &kp G             &kp H         &hm RSHFT J   &hm RCTRL K   &hm RALT L    &hm RGUI SEMI &kp SQT
    &kp LSHFT       &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp DEL
                                                &kp LALT      &mo LOWER     &kp SPACE         &mt LSHIFT RET &mo RAISE    &kp LGUI
                         >;
