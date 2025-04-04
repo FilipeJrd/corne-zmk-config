@@ -77,6 +77,18 @@
                 };
         };
 
+        behaviors {
+                hm: homerow_mods {
+                        compatible = "zmk,behavior-hold-tap";
+                        label = "HOMEROW_MODS";
+                        #binding-cells = <2>;
+                        tapping-term-ms = <200>;
+                        quick-tap-ms = <0>;
+                        flavor = "tap-preferred";
+                        bindings = <&kp>, <&kp>;
+                };
+        };
+
         macros {
                 ZMK_MACRO(switch_to_mac, bindings= <&bt BT_SEL 0 &to MAC>;)
                 ZMK_MACRO(switch_to_ipad, bindings= <&bt BT_SEL 2 &to MAC>;)
@@ -244,67 +256,122 @@
         keymap {
                 compatible = "zmk,keymap";
 
+                // Base layer - MAC
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │    TAB      │      Q      │      W      │      E      │      R      │      T      │   │      Y      │      U      │      I      │      O      │      P      │    BSPC     │
+                // │  CTRL/ESC   │  SHFT/A     │  CTRL/S     │   ALT/D     │   GUI/F     │      G      │   │      H      │   GUI/J     │   ALT/K     │  CTRL/L     │  SHFT/;     │     '       │
+                // │    SHFT     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │    GUI      │   LOWER     │   SPACE     │   │   SHFT/RET  │   RAISE     │    ALT      │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 mac_layer {
                         bindings = <
-   &kp TAB          &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &mt LCTRL ESC    &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT        &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp DEL
-                     &kp LGUI &mo LOWER &kp SPACE   &mt LSHIFT RET &mo RAISE &kp RALT
+   &kp TAB          &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSPC
+   &mt LCTRL ESC    &hm LSHFT A   &hm LCTRL S   &hm LALT D    &hm LGUI F    &kp G             &kp H         &hm RGUI J    &hm RALT K    &hm RCTRL L   &hm RSHFT SEMI &kp SQT
+   &kp LSHFT        &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp DEL
+                                               &kp LGUI      &mo LOWER     &kp SPACE         &mt LSHIFT RET &mo RAISE    &kp RALT
                         >;      
                 };
                 
+                // MAC Bindings Layer - Quick access to MAC shortcuts
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │   │   CMD+Y     │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // │   ______    │   CMD+A     │   CMD+S     │   CMD+D     │   CMD+F     │   ______    │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // │   ______    │   CMD+Z     │   CMD+X     │   CMD+C     │   CMD+V     │   ______    │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 mac_bindings_layers {
                         bindings = <
-   &trans       &trans          &trans              &trans       &trans       &trans         &kp LG(Y) &trans &trans &trans &trans &trans
-   &trans       &kp LG(A)       &kp LG(S)           &kp LG(D)    &kp LG(F)    &trans         &trans    &trans &trans &trans &trans &trans
-   &trans       &kp LG(Z)       &kp LG(X)           &kp LG(C)    &kp LG(V)    &trans         &trans    &trans &trans &trans &trans &trans
-                                                    &trans       &trans       &trans         &trans    &trans &trans
+   &trans           &trans         &trans         &trans         &trans         &trans            &kp LG(Y)     &trans         &trans         &trans         &trans         &trans
+   &trans           &kp LG(A)      &kp LG(S)      &kp LG(D)      &kp LG(F)      &trans            &trans        &trans         &trans         &trans         &trans         &trans
+   &trans           &kp LG(Z)      &kp LG(X)      &kp LG(C)      &kp LG(V)      &trans            &trans        &trans         &trans         &trans         &trans         &trans
+                                               &trans         &trans         &trans            &trans        &trans         &trans
                         >;
                 };
 
+                // Base layer - WINDOWS
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │    TAB      │      Q      │      W      │      E      │      R      │      T      │   │      Y      │      U      │      I      │      O      │      P      │    BSPC     │
+                // │  CTRL/ESC   │  SHFT/A     │  CTRL/S     │   ALT/D     │   GUI/F     │      G      │   │      H      │   GUI/J     │   ALT/K     │  CTRL/L     │  SHFT/;     │     '       │
+                // │    SHFT     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │    ALT      │   LOWER     │   SPACE     │   │   SHFT/RET  │   RAISE     │    GUI      │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 windows_layer {
                         bindings = <
-   &kp TAB         &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &mt LCTRL ESC   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT       &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp DEL
-                    &kp LALT &mo LOWER &kp SPACE   &mt LSHIFT RET &mo RAISE &kp LGUI
-
+   &kp TAB         &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BSPC
+   &mt LCTRL ESC   &hm LSHFT A   &hm LCTRL S   &hm LALT D    &hm LGUI F    &kp G             &kp H         &hm RGUI J    &hm RALT K    &hm RCTRL L   &hm RSHFT SEMI &kp SQT
+   &kp LSHFT       &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp DEL
+                                               &kp LALT      &mo LOWER     &kp SPACE         &mt LSHIFT RET &mo RAISE    &kp LGUI
                         >;
                 };
 
+                // WINDOWS Bindings Layer - Quick access to Windows shortcuts
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │   │   CTRL+Y    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // │   ______    │   CTRL+A    │   CTRL+S    │   CTRL+D    │   CTRL+F    │   ______    │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // │   ______    │   CTRL+Z    │   CTRL+X    │   CTRL+C    │   CTRL+V    │   ______    │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 windows_bindings_layers {
                         bindings = <
-   &trans        &trans          &trans          &trans       &trans       &trans         &kp LC(Y) &trans &trans &trans &trans &trans
-   &trans        &kp LC(A)       &kp LC(S)       &kp LC(D)    &kp LC(F)    &trans         &trans    &trans &trans &trans &trans &trans
-   &trans        &kp LC(Z)       &kp LC(X)       &kp LC(C)    &kp LC(V)    &trans         &trans    &trans &trans &trans &trans &trans
-                          &trans       &trans       &trans                         &trans    &trans &trans
+   &trans          &trans         &trans         &trans         &trans         &trans            &kp LC(Y)     &trans         &trans         &trans         &trans         &trans
+   &trans          &kp LC(A)      &kp LC(S)      &kp LC(D)      &kp LC(F)      &trans            &trans        &trans         &trans         &trans         &trans         &trans
+   &trans          &kp LC(Z)      &kp LC(X)      &kp LC(C)      &kp LC(V)      &trans            &trans        &trans         &trans         &trans         &trans         &trans
+                                               &trans         &trans         &trans            &trans        &trans         &trans
                         >;
                 };
         
+                // Lower Layer - Numbers and Function keys
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │   ______    │      1      │      2      │      3      │      4      │      5      │   │      6      │      7      │      8      │      9      │      0      │    BSPC     │
+                // │   ______    │     F1      │     F2      │     F3      │     F4      │     F5      │   │    LEFT     │    DOWN     │     UP      │   RIGHT     │   ______    │   ______    │
+                // │   ______    │     F6      │     F7      │     F8      │     F9      │    F10      │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 lower_layer {
                         bindings = <
-   &trans  &kp N1 &kp N2 &kp N3 &kp N4 &kp N5   &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &trans  &kp F1 &kp F2 &kp F3 &kp F4 &kp F5   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &trans  &kp F6 &kp F7 &kp F8 &kp F9 &kp F10  &trans   &trans   &trans &trans    &trans &trans
-                         &trans &trans &trans   &trans   &trans   &trans
+   &trans          &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &kp BSPC
+   &trans          &kp F1        &kp F2        &kp F3        &kp F4        &kp F5            &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &trans        &trans
+   &trans          &kp F6        &kp F7        &kp F8        &kp F9        &kp F10           &trans        &trans        &trans        &trans        &trans        &trans
+                                               &trans        &trans        &trans            &trans        &trans        &trans
                         >;
                 };
 
+                // Raise Layer - Symbols
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │    TAB      │      !      │      @      │      #      │      $      │      %      │   │      ^      │      &      │      *      │      (      │      )      │    BSPC     │
+                // │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │   │      -      │      =      │      [      │      ]      │      \      │      `      │
+                // │    SHFT     │   ______    │   ______    │   ______    │   ______    │   ______    │   │      _      │      +      │      {      │      }      │      |      │      ~      │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 raise_layer {
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &trans    &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
-                             &trans   &trans   &trans      &trans    &trans    &trans
+   &kp TAB         &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT         &kp CARET     &kp AMPS      &kp KP_MULTIPLY &kp LPAR     &kp RPAR      &kp BSPC
+   &trans          &trans        &trans        &trans        &trans        &trans            &kp MINUS     &kp EQUAL     &kp LBKT       &kp RBKT     &kp BSLH      &kp GRAVE
+   &kp LSHFT       &trans        &trans        &trans        &trans        &trans            &kp UNDER     &kp PLUS      &kp LBRC       &kp RBRC     &kp PIPE      &kp TILDE
+                                               &trans        &trans        &trans            &trans        &trans        &trans
                         >;
                 };
        
+                // Adjust Layer - Bluetooth and special functions
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // │  BT CLEAR   │  BT MAC     │  BT WIN     │  BT IPAD    │   BT 3      │   BT 4      │   │   ______    │   ______    │   ______    │   ______    │   ______    │   ______    │
+                // │ BOOTLOADER  │   ______    │   ______    │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │   ______    │   ______    │ BOOTLOADER  │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │   ______    │   ______    │   ______    │   │   ______    │   ______    │   ______    │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 adjust_layer {
                         bindings = <
-   &trans       &trans          &trans              &trans          &trans       &trans         &trans &trans &trans &trans &trans &trans
-   &bt BT_CLR   &switch_to_mac  &switch_to_windows  &switch_to_ipad &bt BT_SEL 3 &bt BT_SEL 4   &trans &trans &trans &trans &trans &trans
-   &bootloader  &trans          &trans              &trans          &trans       &trans         &trans &trans &trans &trans &trans &bootloader
-                                                    &trans          &trans       &trans         &trans &trans &trans
+   &trans          &trans         &trans         &trans         &trans         &trans            &trans        &trans        &trans        &trans        &trans        &trans
+   &bt BT_CLR      &switch_to_mac &switch_to_windows &switch_to_ipad &bt BT_SEL 3  &bt BT_SEL 4     &trans        &trans        &trans        &trans        &trans        &trans
+   &bootloader     &trans         &trans         &trans         &trans         &trans            &trans        &trans        &trans        &trans        &trans        &bootloader
+                                               &trans         &trans         &trans            &trans        &trans        &trans
                         >;
                 };       
         }; 
