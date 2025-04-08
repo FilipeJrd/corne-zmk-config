@@ -75,14 +75,14 @@
                         if-layers = <LOWER RAISE>;
                         then-layer = <ADJUST>;
                 };
-        };
+        }
 
         behaviors {
                 hm: homerow_mods {
                         compatible = "zmk,behavior-hold-tap";
                         label = "HOMEROW_MODS";
                         #binding-cells = <2>;
-                        quick-tap-ms = <0>;
+                        tapping-term-ms = <200>;
                         flavor = "tap-preferred";
                         bindings = <&kp>, <&kp>;
                 };
@@ -90,6 +90,8 @@
                         compatible = "zmk,behavior-hold-tap";
                         label = "LAYER_TAP_THUMB";
                         #binding-cells = <2>;
+                        tapping-term-ms = <200>;
+                        quick-tap-ms = <0>;         // Generous quick tap window for multiple keypresses
                         flavor = "balanced";
                         hold-trigger-key-positions = <LT1 LT2 LT3 LT4 LT5 RM0 RM1 RM2 RM3>;  // Right home row positions (H,J,K,L) for arrows
                         bindings = <&mo>, <&kp>;
