@@ -93,7 +93,7 @@
                         #binding-cells = <2>;
                         tapping-term-ms = <300>;      // Longer tapping term to accommodate slower thumb release
                         quick-tap-ms = <200>;         // Generous quick tap window for multiple spaces
-                        flavor = "tap-preferred";     // Strongly prefer tap behavior
+                        flavor = "balanced";
                         hold-trigger-key-positions = <LT1 LT2 LT3 LT4 LT5 RM0 RM1 RM2 RM3>;  // Right home row positions (H,J,K,L) for arrows
                         hold-trigger-on-release;      // Wait for other key press before deciding hold or tap
                         bindings = <&mo>, <&kp>;
