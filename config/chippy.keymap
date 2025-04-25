@@ -171,10 +171,38 @@
                         layers = <MAC>;
                 };
 
+                combo_sticky_shift_mac {
+                        timeout-ms = <50>;
+                        key-positions = <LT2 LT4>;  // W and R keys
+                        bindings = <&sk LSHFT>;
+                        layers = <MAC>;
+                };
+
+                combo_caps_word_mac {
+                        timeout-ms = <50>;
+                        key-positions = <LT2 LT3 LT4>;  // W, E, and R keys
+                        bindings = <&caps_word>;
+                        layers = <MAC>;
+                };
+
                 combo_spotlight_windows {         
                         timeout-ms = <50>;
                         key-positions = <LH0 RH0>;
                         bindings = <&kp LA(SPACE)>;
+                        layers = <WINDOWS>;
+                };
+
+                combo_sticky_shift_windows {
+                        timeout-ms = <50>;
+                        key-positions = <LT2 LT4>;  // W and R keys
+                        bindings = <&sk LSHFT>;
+                        layers = <WINDOWS>;
+                };
+
+                combo_caps_word_windows {
+                        timeout-ms = <50>;
+                        key-positions = <LT2 LT3 LT4>;  // W, E, and R keys
+                        bindings = <&caps_word>;
                         layers = <WINDOWS>;
                 };
 
