@@ -72,7 +72,7 @@
         conditional_layers {
                 compatible = "zmk,conditional-layers";
                         tri_layer {
-                        if-layers = <NUM_LAYER RAISE>;
+                        if-layers = <NUM_LAYER SYMBOL>;
                         then-layer = <ADJUST>;
                 };
         };
@@ -314,14 +314,14 @@
                 // │   TRANS     │   GUI/A     │   ALT/S     │  CTRL/D     │  SHFT/F     │      G      │   │      H      │  SHFT/J     │  CTRL/K     │   ALT/L     │   GUI/;     │     '       │
                 // │   TRANS     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                //                                           │    ESC      │ NUM_LAYER/SPACE │    TAB      │   │    RET      │   RAISE     │    RALT     │
+                //                                           │    ESC      │ NUM_LAYER/SPACE │    TAB      │   │    RET      │   SYMBOL     │    RALT     │
                 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 mac_layer {
                         bindings = <
    &trans    &kp Q      &kp W      &kp E       &kp R       &kp T          &kp Y      &kp U       &kp I       &kp O       &kp P       &kp BSPC
    &trans    &hml LGUI A &hml LALT S &hml LCTRL D &hml LSHFT F &kp G          &kp H      &hmr RSHFT J &hmr RCTRL K &hmr RALT L  &hmr RGUI SEMI &kp SQT
    &trans    &kp Z      &kp X      &kp C       &kp V       &kp B          &kp N      &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp DEL
-                                   &kp ESC    &lt_thumb NAVIGATION SPACE &lt_thumb NUM_LAYER TAB     &kp RET    &lt_thumb SYMBOL RET    &lt_thumb RAISE BSPC   &kp DEL
+                                   &kp ESC    &lt_thumb NAVIGATION SPACE &lt_thumb NUM_LAYER TAB     &kp RET    &lt_thumb SYMBOL RET    &lt_thumb SYMBOL BSPC   &kp DEL
                         >;
                 };
 
@@ -348,14 +348,14 @@
                 // │   TRANS     │   GUI/A     │   ALT/S     │  CTRL/D     │  SHFT/F     │      G      │   │      H      │  SHFT/J     │  CTRL/K     │   ALT/L     │   GUI/;     │     '       │
                 // │   TRANS     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                //                                           │    ESC      │ NUM_LAYER/SPACE │    TAB      │   │    RET      │   RAISE     │    LGUI     │
+                //                                           │    ESC      │ NUM_LAYER/SPACE │    TAB      │   │    RET      │   SYMBOL     │    LGUI     │
                 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 windows_layer {
                         bindings = <
    &trans    &kp Q      &kp W      &kp E       &kp R       &kp T          &kp Y      &kp U       &kp I       &kp O       &kp P       &kp BSPC
    &trans    &hml LGUI A &hml LALT S &hml LCTRL D &hml LSHFT F &kp G          &kp H      &hmr RSHFT J &hmr RCTRL K &hmr RALT L  &hmr RGUI SEMI &kp SQT
    &trans    &kp Z      &kp X      &kp C       &kp V       &kp B          &kp N      &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp DEL
-                                   &kp ESC    &lt_thumb NAVIGATION SPACE &lt_thumb NUM_LAYER TAB     &kp RET    &lt_thumb RAISE BSPC   &kp DEL
+                                   &kp ESC    &lt_thumb NAVIGATION SPACE &lt_thumb NUM_LAYER TAB     &kp RET    &lt_thumb SYMBOL BSPC   &kp DEL
                         >;
                 };
 
