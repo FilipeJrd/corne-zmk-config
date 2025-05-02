@@ -405,17 +405,17 @@
                 // SYMBOL Layer (5) - Symbols
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
                 // │   TRANS     │      !      │      @      │      #      │      $      │      %      │   │      ^      │      &      │      *      │      (      │      )      │   TRANS     │
-                // │   TRANS     │   GUI/[     │   ALT/{     │  CTRL/(     │  SHFT/'     │      `      │   │   TRANS     │  SHFT/-     │  CTRL/)     │   ALT/}     │   GUI/]     │   TRANS     │
-                // │   TRANS     │      *      │      |      │      _      │      -      │      +      │   │      _      │      +      │      {      │      }      │      \      │   TRANS     │
+                // │   TRANS     │   GUI/{     │   ALT/[     │  CTRL/(     │  SHFT/<     │      |      │   │      =      │  SHFT/>     │  CTRL/)     │   ALT/]     │   GUI/}     │   TRANS     │
+                // │   TRANS     │      `      │      ~      │      -      │      +      │      \      │   │      _      │      ;      │      :      │      '      │      "      │   TRANS     │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                 //                                           │    ESC      │   SPACE     │    TAB      │   │   TRANS     │   TRANS     │   TRANS     │
                 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
         
                 symbol_layer {
                         bindings = <
-   &trans    &kp EXCL         &kp AT         &kp HASH        &kp DLLR       &kp PRCNT      &kp CARET        &kp AMPS         &kp KP_MULTIPLY  &kp LPAR        &kp RPAR       &trans
-   &trans    &hml LGUI LBKT   &hml LALT LBRC &hml LCTRL LPAR &hml LSHFT SQT &kp GRAVE      &trans           &hmr RSHFT MINUS &hmr RCTRL RPAR  &hmr RALT RBRC  &hmr RGUI RBKT &trans
-   &trans    &kp KP_MULTIPLY  &kp PIPE       &kp UNDER       &kp MINUS      &kp PLUS       &kp UNDER        &kp PLUS         &kp LBRC         &kp RBRC        &kp BSLH      &trans
+   &trans    &kp EXCL        &kp AT         &kp HASH       &kp DLLR       &kp PRCNT      &kp CARET       &kp AMPS        &kp STAR       &kp LPAR       &kp RPAR       &trans
+   &trans    &hml LGUI LBRACE &hml LALT LBRC &hml LCTRL LPAR &hml LSHFT LESS &kp PIPE   &kp EQUAL       &hmr RSHFT GREATER &hmr RCTRL RPAR &hmr RALT RBRC &hmr RGUI RBRACE &trans
+   &trans    &kp GRAVE       &kp TILDE      &kp MINUS      &kp PLUS       &kp BSLH       &kp UNDER       &kp SEMI        &kp COLON      &kp SQT        &kp DQT        &trans
                                                   &kp ESC      &kp SPACE    &kp TAB         &trans     &trans      &trans
                         >;
                 };
