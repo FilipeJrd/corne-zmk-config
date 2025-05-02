@@ -17,6 +17,7 @@
 #define SYMBOL  5
 #define NAVIGATION  6
 #define ADJUST  7
+#define GAMING  8
 
 #define LT0  5  // left-top row
 #define LT1  4
@@ -130,6 +131,7 @@
                 ZMK_MACRO(switch_to_mac, bindings= <&bt BT_SEL 0 &to MAC>;)
                 ZMK_MACRO(switch_to_ipad, bindings= <&bt BT_SEL 2 &to MAC>;)
                 ZMK_MACRO(switch_to_windows, bindings= <&bt BT_SEL 1 &to WINDOWS>;)
+                ZMK_MACRO(toggle_gaming, bindings= <&tog GAMING>;)
 
                 win_app_sw: win_app_sw {
                         label = "WINDOWS_APP_SWITCHER";
@@ -303,6 +305,13 @@
                         bindings = <&kp LG(W)>;
                         layers = <MAC>;
                 };
+
+                combo_toggle_gaming {
+                        timeout-ms = <50>;
+                        key-positions = <LH2 RH2>;
+                        bindings = <&toggle_gaming>;
+                        layers = <WINDOWS GAMING>;
+                };
         };                      
 
         keymap {
@@ -314,7 +323,7 @@
                 // │   TRANS     │   GUI/A     │   ALT/S     │  CTRL/D     │  SHFT/F     │      G      │   │      H      │  SHFT/J     │  CTRL/K     │   ALT/L     │   GUI/;     │     '       │
                 // │   TRANS     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                //                                           │    ESC      │ NUM_LAYER/SPACE │    TAB      │   │    RET      │   SYMBOL     │    RALT     │
+                //                                           │    ESC      │ NAV/SPACE   │    TAB      │   │    RET      │   SYMBOL    │    RALT     │
                 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 mac_layer {
                         bindings = <
@@ -376,13 +385,13 @@
                         >;
                 };
 
-                // Lower Layer (4) - Numbers and Navigation
+                // NUM_LAYER (4) - Numbers and Function Keys
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                // │   TRANS     │      1      │      2      │      3      │      4      │      5      │   │      6      │      7      │      8      │      9      │      0      │    BSPC     │
-                // │   TRANS     │     F1      │     F2      │     F3      │     F4      │     F5      │   │    LEFT     │    DOWN     │     UP      │   RIGHT     │   TRANS     │   TRANS     │
-                // │   TRANS     │     F6      │     F7      │     F8      │     F9      │    F10      │   │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │
+                // │   TRANS     │      1      │      2      │      3      │      4      │      5      │   │      6      │      7      │      8      │      9      │      0      │   TRANS     │
+                // │   TRANS     │     F1      │     F2      │     F3      │     F4      │     F5      │   │   TRANS     │      4      │      5      │      6      │   TRANS     │   TRANS     │
+                // │   TRANS     │     F6      │     F7      │     F8      │     F9      │    F10      │   │   TRANS     │      1      │      2      │      3      │   TRANS     │   TRANS     │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                //                                           │   TRANS     │   TRANS     │   TRANS     │   │   TRANS     │   TRANS     │   TRANS     │
+                //                                           │   TRANS     │   TRANS     │   TRANS     │   │   TRANS     │   TRANS     │      0      │
                 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 num_layer {
                         bindings = <
@@ -393,13 +402,13 @@
                         >;
                 };
 
-                // symbol Layer (5) - Symbols
+                // SYMBOL Layer (5) - Symbols
                 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                // │   TRANS     │      !      │      @      │      #      │      $      │      %      │   │      ^      │      &      │      *      │      (      │      )      │    BSPC     │
-                // │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   │      -      │      =      │      [      │      ]      │      \      │      `      │
-                // │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   │      _      │      +      │      {      │      }      │      |      │      ~      │
+                // │   TRANS     │      !      │      @      │      #      │      $      │      %      │   │      ^      │      &      │      *      │      (      │      )      │   TRANS     │
+                // │   TRANS     │   GUI/[     │   ALT/{     │  CTRL/(     │  SHFT/'     │      `      │   │   TRANS     │  SHFT/-     │  CTRL/)     │   ALT/}     │   GUI/]     │   TRANS     │
+                // │   TRANS     │      *      │      |      │      _      │      -      │      +      │   │      _      │      +      │      {      │      }      │      \      │   TRANS     │
                 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                //                                           │   TRANS     │   TRANS     │   TRANS     │   │   TRANS     │   TRANS     │   TRANS     │
+                //                                           │    ESC      │   SPACE     │    TAB      │   │   TRANS     │   TRANS     │   TRANS     │
                 //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
         
                 symbol_layer {
@@ -407,10 +416,18 @@
    &trans    &kp EXCL         &kp AT         &kp HASH        &kp DLLR       &kp PRCNT      &kp CARET        &kp AMPS         &kp KP_MULTIPLY  &kp LPAR        &kp RPAR       &trans
    &trans    &hml LGUI LBKT   &hml LALT LBRC &hml LCTRL LPAR &hml LSHFT SQT &kp GRAVE      &trans           &hmr RSHFT MINUS &hmr RCTRL RPAR  &hmr RALT RBRC  &hmr RGUI RBKT &trans
    &trans    &kp KP_MULTIPLY  &kp PIPE       &kp UNDER       &kp MINUS      &kp PLUS       &kp UNDER        &kp PLUS         &kp LBRC         &kp RBRC        &kp BSLH      &trans
-                                                      &kp ESC      &kp SPACE    &kp TAB         &trans     &trans      &trans
+                                                  &kp ESC      &kp SPACE    &kp TAB         &trans     &trans      &trans
                         >;
                 };
 
+                // NAVIGATION Layer (6) - Navigation
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │
+                // │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   │    LEFT     │    DOWN     │     UP      │   RIGHT     │   TRANS     │   TRANS     │
+                // │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   TRANS     │   │    HOME     │   PG_DN     │   PG_UP     │    END      │   TRANS     │   TRANS     │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │   TRANS     │   TRANS     │   TRANS     │   │   TRANS     │   BSPC      │    DEL      │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                 navigation_layer {
                         bindings = <
     &trans    &trans     &trans     &trans      &trans      &trans         &trans     &trans      &trans      &trans      &trans      &trans
@@ -436,5 +453,22 @@
                                    &trans      &trans      &trans         &trans     &trans      &trans
                         >;
                 };       
+
+                // GAMING Layer (8) - Gaming Layout
+                // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                // │   TRANS     │      Q      │      W      │      E      │      R      │      T      │   │      Y      │      U      │      I      │      O      │      P      │    BSPC     │
+                // │   TRANS     │      A      │      S      │      D      │      F      │      G      │   │      H      │      J      │      K      │      L      │      ;      │     '       │
+                // │   TRANS     │      Z      │      X      │      C      │      V      │      B      │   │      N      │      M      │      ,      │      .      │      /      │    DEL      │
+                // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                //                                           │    ESC      │   SPACE     │    TAB      │   │    RET      │   SYMBOL    │    RALT     │
+                //                                           ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+                gaming_layer {
+                        bindings = <
+   &trans    &kp Q      &kp W      &kp E       &kp R       &kp T          &kp Y      &kp U       &kp I       &kp O       &kp P       &kp BSPC
+   &trans    &kp A      &kp S      &kp D       &kp F       &kp G          &kp H      &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
+   &trans    &kp Z      &kp X      &kp C       &kp V       &kp B          &kp N      &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp DEL
+                                   &kp ESC    &kp SPACE    &kp TAB         &kp RET    &trans      &trans
+                        >;
+                };
         }; 
 };
